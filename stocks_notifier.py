@@ -22,18 +22,20 @@ def get_stocks_data():
   # print(alpha_data)
   data_list = [value for (key, value) in alpha_data.items()]
   # print(data_list)
+  yda_data = data_list[0]
+  dby_data = data_list[1]
 
-  # close_price_yda = round(float(alpha_data[yesterday.strftime("%Y-%m-%d")]['4. close']), 2)
-  # print(f"Close price yesterday ({yesterday}): {close_price_yda} USD")
-  close_price_yda = round(float(data_list[0]['4. close']), 2)
-  print(f"Close price yesterday: {close_price_yda} USD")
-  # close_price_dby = round(float(alpha_data[day_before_yesterday.strftime("%Y-%m-%d")]['4. close']), 2)
-  # print(f"Close price day before yesterday ({day_before_yesterday}): {close_price_dby} USD")
-  close_price_dby = round(float(data_list[1]['4. close']), 2)
-  print(f"Close price day before yesterday: {close_price_dby} USD")
-  price_variation = round(close_price_yda - close_price_dby, 2)
+  # yda_close_price = round(float(alpha_data[yesterday.strftime("%Y-%m-%d")]['4. close']), 2)
+  # print(f"Close price yesterday ({yesterday}): {yda_close_price} USD")
+  yda_close_price = round(float(yda_data['4. close']), 2)
+  print(f"Close price yesterday: {yda_close_price} USD")
+  # dby_close_price = round(float(alpha_data[day_before_yesterday.strftime("%Y-%m-%d")]['4. close']), 2)
+  # print(f"Close price day before yesterday ({day_before_yesterday}): {dby_close_price} USD")
+  dby_close_price = round(float(dby_data['4. close']), 2)
+  print(f"Close price day before yesterday: {dby_close_price} USD")
+  price_variation = round(yda_close_price - dby_close_price, 2)
   print(f"Price variation: {price_variation} USD")
-  stock_variation = round(price_variation / close_price_dby * 100, 2)
+  stock_variation = round(price_variation / dby_close_price * 100, 2)
   print(f"Stock variation: {stock_variation} %")
   stock_info = ''
   if stock_variation >= 5:
