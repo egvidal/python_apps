@@ -1,6 +1,7 @@
 import requests
 from datetime import date, timedelta
 from os import environ
+from pprint import pprint
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla"
@@ -19,7 +20,7 @@ def get_stocks_data():
   req = requests.get(url=ALPHA_ENDPOINT, params=ALPHA_PARAMS)
   req.raise_for_status()
   alpha_data = req.json()['Time Series (Daily)']
-  # print(alpha_data)
+  # pprint(alpha_data)
   data_list = [value for (key, value) in alpha_data.items()]
   # print(data_list)
   yda_data = data_list[0]
